@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PREVIEW • Bolão da Copa 2026</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* ===== cópia do bolao/css/bolao.css (inline só para o preview) ===== */
+    :root{--verde:#0a8a3d;--amarelo:#ffd200;--azul:#1c2e6e}
+    *{box-sizing:border-box}
+    body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:linear-gradient(160deg,#0b3d20 0%,#11151c 55%,#1c2e6e 100%);background-attachment:fixed;color:#f5f7fa;min-height:100vh;margin:0}
+    a{color:var(--amarelo)}
+    .bolao-nav{background:rgba(0,0,0,.35);backdrop-filter:blur(8px);border-bottom:3px solid var(--amarelo)}
+    .bolao-nav .brand{font-weight:800;letter-spacing:.5px;color:#fff;text-decoration:none;font-size:1.25rem}
+    .bolao-nav .brand span{color:var(--amarelo)}
+    .bolao-nav a.nav-link{color:#e9edf2;font-weight:600}
+    .bolao-nav a.nav-link.active,.bolao-nav a.nav-link:hover{color:var(--amarelo)}
+    .card-glass{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.35);backdrop-filter:blur(6px)}
+    .btn-copa{background:var(--amarelo);color:#1a1a1a;font-weight:700;border:none}
+    .btn-copa:hover{background:#ffdd33;color:#000}
+    .btn-outline-copa{border:2px solid var(--amarelo);color:var(--amarelo);font-weight:700;background:transparent}
+    .btn-outline-copa:hover{background:var(--amarelo);color:#1a1a1a}
+    .hero-title{font-weight:900;font-size:clamp(2rem,6vw,3.6rem);line-height:1.05}
+    .hero-title span{color:var(--amarelo)}
+    .match-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:.85rem 1rem;margin-bottom:.75rem;transition:border-color .15s}
+    .match-card:hover{border-color:rgba(255,210,0,.5)}
+    .match-card.finished{border-left:4px solid var(--amarelo)}
+    .match-card.locked{opacity:.85}
+    .team{display:flex;align-items:center;gap:.5rem;font-weight:700;min-width:0}
+    .team .flag{font-size:1.4rem}
+    .score-input{width:56px;text-align:center;font-weight:800;font-size:1.1rem;background:rgba(0,0,0,.3);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:.3rem}
+    .score-input:disabled{opacity:.6}
+    .vs{color:var(--amarelo);font-weight:800}
+    .result-pill{background:var(--verde);color:#fff;font-weight:800;border-radius:999px;padding:.15rem .7rem}
+    .pts-pill{border-radius:999px;padding:.1rem .55rem;font-weight:800;font-size:.8rem}
+    .pts-10{background:var(--amarelo);color:#1a1a1a}
+    .pts-mid{background:#2ea44f;color:#fff}
+    .pts-0{background:rgba(255,255,255,.12);color:#cfd6df}
+    .rank-table{width:100%;border-collapse:separate;border-spacing:0 .5rem}
+    .rank-table th{color:var(--amarelo);font-size:.8rem;text-transform:uppercase;letter-spacing:.5px}
+    .rank-table td,.rank-table th{padding:.7rem .8rem}
+    .rank-row{background:rgba(255,255,255,.05)}
+    .rank-row td:first-child{border-top-left-radius:12px;border-bottom-left-radius:12px}
+    .rank-row td:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px}
+    .rank-pos{font-weight:900;font-size:1.1rem;width:48px;text-align:center}
+    .rank-1{background:linear-gradient(90deg,rgba(255,210,0,.25),rgba(255,255,255,.05))}
+    .rank-1 .rank-pos{color:var(--amarelo)}
+    .winner-banner{background:linear-gradient(90deg,var(--amarelo),#ffe766);color:#1a1a1a;border-radius:18px;padding:1.5rem;text-align:center;font-weight:900}
+    .winner-banner .who{font-size:1.8rem}
+    .setup-banner{background:rgba(255,80,80,.15);border:1px solid rgba(255,120,120,.5);border-radius:14px;padding:1rem 1.25rem}
+    .muted{color:#aeb8c4}
+    .text-amarelo{color:var(--amarelo)}
+    .divider{height:1px;background:rgba(255,255,255,.12);margin:1.25rem 0}
+    /* só do preview */
+    .screen-label{background:rgba(255,210,0,.12);border:1px dashed rgba(255,210,0,.5);border-radius:12px;padding:.6rem 1rem;margin:3rem 0 1rem;font-weight:800;color:var(--amarelo)}
+    .preview-note{background:rgba(28,46,110,.45);border:1px solid rgba(120,150,255,.4);border-radius:12px;padding:.8rem 1rem}
+  </style>
+</head>
+<body>
+
+  <nav class="bolao-nav py-3">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a class="brand" href="#">⚽ Bolão <span>Copa 2026</span></a>
+      <div class="d-flex gap-3">
+        <a class="nav-link" href="#t1">Início</a>
+        <a class="nav-link" href="#t2">Palpites</a>
+        <a class="nav-link" href="#t3">Ranking</a>
+        <a class="nav-link" href="#t4">Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+
+    <div class="preview-note mb-2">
+      👀 <strong>Esta é uma página de PREVIEW</strong> com dados fictícios, só para você
+      ver o visual. As telas reais (<code>index/palpites/ranking/admin.html</code>) têm
+      os mesmos estilos e funcionam de verdade depois que o Firebase for configurado.
+    </div>
+
+    <!-- ============ TELA 1: ENTRADA ============ -->
+    <div class="screen-label" id="t1">TELA 1 — Início / Entrada (index.html)</div>
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <h1 class="hero-title mb-3">Bolão da<br><span>Copa do Mundo 2026</span></h1>
+        <p class="lead muted mb-4">Dê seus palpites nos placares de cada jogo, acompanhe o
+          <strong>ranking ao vivo</strong> e descubra quem é o craque dos palpites na turma. 🏆</p>
+        <div class="card-glass p-4" style="max-width:480px">
+          <label class="form-label fw-bold">Entre com seu nome para começar:</label>
+          <div class="input-group input-group-lg mb-2">
+            <input type="text" class="form-control" placeholder="Ex.: João Silva" value="Caio">
+            <button class="btn btn-copa">Entrar ▶</button>
+          </div>
+          <small class="muted">Use sempre o mesmo nome para manter seus palpites.</small>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="card-glass p-4">
+          <h5 class="text-amarelo fw-bold mb-3">Como funciona a pontuação</h5>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2">🎯 <strong>10</strong> pts — cravou o placar exato</li>
+            <li class="mb-2">➗ <strong>7</strong> pts — acertou o vencedor <em>e</em> o saldo de gols</li>
+            <li class="mb-2">✅ <strong>5</strong> pts — acertou só quem venceu (ou o empate)</li>
+            <li class="mb-2">❌ <strong>0</strong> pts — errou o resultado</li>
+          </ul>
+          <div class="divider"></div>
+          <div class="d-flex gap-2">
+            <a href="#t2" class="btn btn-outline-copa flex-fill">Palpitar</a>
+            <a href="#t3" class="btn btn-outline-copa flex-fill">Ver ranking</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ TELA 2: PALPITES ============ -->
+    <div class="screen-label" id="t2">TELA 2 — Meus Palpites (palpites.html)</div>
+    <div class="d-flex flex-wrap align-items-center justify-content-between mb-3 gap-2">
+      <div>
+        <h3 class="fw-bold mb-0">Meus Palpites</h3>
+        <span class="muted">Jogador: <strong class="text-amarelo">Caio</strong>
+          <a href="#" class="ms-2 small">(trocar)</a></span>
+      </div>
+      <div class="text-end">
+        <div class="muted small">Seus pontos até agora</div>
+        <div class="fw-bold fs-3 text-amarelo">17</div>
+      </div>
+    </div>
+    <div class="muted small mb-3">💾 Os palpites salvam sozinhos ao digitar.</div>
+
+    <h5 class="text-amarelo fw-bold mt-4 mb-2">Fase de Grupos</h5>
+
+    <!-- jogo finalizado, cravou -->
+    <div class="match-card finished locked">
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <small class="muted">Grupo A • 13/06 16:00</small>
+        <div><span class="pts-pill pts-10">+10</span><span class="result-pill ms-2">Final 2 x 1</span></div>
+      </div>
+      <div class="d-flex align-items-center justify-content-center gap-2 gap-md-3 flex-wrap">
+        <div class="team justify-content-end" style="flex:1"><span class="text-truncate">Brasil</span><span class="flag">🇧🇷</span></div>
+        <input type="number" class="score-input" value="2" disabled>
+        <span class="vs">x</span>
+        <input type="number" class="score-input" value="1" disabled>
+        <div class="team" style="flex:1"><span class="flag">🇷🇸</span><span class="text-truncate">Sérvia</span></div>
+      </div>
+    </div>
+
+    <!-- jogo finalizado, acertou saldo -->
+    <div class="match-card finished locked">
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <small class="muted">Grupo A • 13/06 19:00</small>
+        <div><span class="pts-pill pts-mid">+7</span><span class="result-pill ms-2">Final 1 x 0</span></div>
+      </div>
+      <div class="d-flex align-items-center justify-content-center gap-2 gap-md-3 flex-wrap">
+        <div class="team justify-content-end" style="flex:1"><span class="text-truncate">México</span><span class="flag">🇲🇽</span></div>
+        <input type="number" class="score-input" value="2" disabled>
+        <span class="vs">x</span>
+        <input type="number" class="score-input" value="1" disabled>
+        <div class="team" style="flex:1"><span class="flag">🇵🇱</span><span class="text-truncate">Polônia</span></div>
+      </div>
+    </div>
+
+    <!-- jogo aberto para palpitar -->
+    <div class="match-card">
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <small class="muted">Grupo B • 14/06 16:00</small>
+      </div>
+      <div class="d-flex align-items-center justify-content-center gap-2 gap-md-3 flex-wrap">
+        <div class="team justify-content-end" style="flex:1"><span class="text-truncate">Argentina</span><span class="flag">🇦🇷</span></div>
+        <input type="number" class="score-input" value="3">
+        <span class="vs">x</span>
+        <input type="number" class="score-input" value="0">
+        <div class="team" style="flex:1"><span class="flag">🇭🇷</span><span class="text-truncate">Croácia</span></div>
+      </div>
+    </div>
+
+    <!-- jogo aberto, ainda sem palpite -->
+    <div class="match-card">
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <small class="muted">Grupo B • 14/06 19:00</small>
+      </div>
+      <div class="d-flex align-items-center justify-content-center gap-2 gap-md-3 flex-wrap">
+        <div class="team justify-content-end" style="flex:1"><span class="text-truncate">França</span><span class="flag">🇫🇷</span></div>
+        <input type="number" class="score-input" placeholder="">
+        <span class="vs">x</span>
+        <input type="number" class="score-input" placeholder="">
+        <div class="team" style="flex:1"><span class="flag">🇲🇦</span><span class="text-truncate">Marrocos</span></div>
+      </div>
+    </div>
+
+    <!-- ============ TELA 3: RANKING ============ -->
+    <div class="screen-label" id="t3">TELA 3 — Ranking & Vencedor (ranking.html)</div>
+    <h3 class="fw-bold mb-1">🏆 Ranking do Bolão</h3>
+    <p class="muted">12 de 12 jogos finalizados • 5 participantes</p>
+
+    <div class="winner-banner mt-3">
+      <div>🏆 CAMPEÃO DO BOLÃO 🏆</div>
+      <div class="who">Caio</div>
+      <div>87 pontos • 5 placares cravados</div>
+    </div>
+
+    <div class="card-glass p-3 p-md-4 mt-3">
+      <table class="rank-table">
+        <thead><tr>
+          <th>#</th><th>Participante</th><th class="text-center">Pts</th>
+          <th class="text-center d-none d-sm-table-cell">Cravadas</th>
+          <th class="text-center d-none d-sm-table-cell">Acertos</th>
+        </tr></thead>
+        <tbody>
+          <tr class="rank-row rank-1"><td class="rank-pos">🥇</td><td class="fw-bold">Caio <span class="badge bg-warning text-dark ms-1">você</span></td><td class="text-center fw-bold text-amarelo fs-5">87</td><td class="text-center d-none d-sm-table-cell">5</td><td class="text-center d-none d-sm-table-cell">10</td></tr>
+          <tr class="rank-row"><td class="rank-pos">🥈</td><td class="fw-bold">Marina</td><td class="text-center fw-bold text-amarelo fs-5">81</td><td class="text-center d-none d-sm-table-cell">4</td><td class="text-center d-none d-sm-table-cell">11</td></tr>
+          <tr class="rank-row"><td class="rank-pos">🥉</td><td class="fw-bold">Rafael</td><td class="text-center fw-bold text-amarelo fs-5">74</td><td class="text-center d-none d-sm-table-cell">3</td><td class="text-center d-none d-sm-table-cell">10</td></tr>
+          <tr class="rank-row"><td class="rank-pos">4</td><td class="fw-bold">Beatriz</td><td class="text-center fw-bold text-amarelo fs-5">68</td><td class="text-center d-none d-sm-table-cell">2</td><td class="text-center d-none d-sm-table-cell">9</td></tr>
+          <tr class="rank-row"><td class="rank-pos">5</td><td class="fw-bold">Diego</td><td class="text-center fw-bold text-amarelo fs-5">59</td><td class="text-center d-none d-sm-table-cell">2</td><td class="text-center d-none d-sm-table-cell">8</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="fw-bold mt-5 mb-3">📋 Resultados dos jogos</h4>
+    <div class="match-card finished">
+      <div class="d-flex align-items-center justify-content-center gap-2 gap-md-3 flex-wrap">
+        <div class="team justify-content-end" style="flex:1"><span class="text-truncate">Brasil</span><span class="flag">🇧🇷</span></div>
+        <span class="result-pill">2 x 1</span>
+        <div class="team" style="flex:1"><span class="flag">🇷🇸</span><span class="text-truncate">Sérvia</span></div>
+      </div>
+      <div class="text-center small muted mt-1">Fase de Grupos • Grupo A</div>
+    </div>
+    <div class="match-card finished">
+      <div class="d-flex align-items-center justify-content-center gap-2 gap-md-3 flex-wrap">
+        <div class="team justify-content-end" style="flex:1"><span class="text-truncate">México</span><span class="flag">🇲🇽</span></div>
+        <span class="result-pill">1 x 0</span>
+        <div class="team" style="flex:1"><span class="flag">🇵🇱</span><span class="text-truncate">Polônia</span></div>
+      </div>
+      <div class="text-center small muted mt-1">Fase de Grupos • Grupo A</div>
+    </div>
+
+    <!-- ============ TELA 4: ADMIN ============ -->
+    <div class="screen-label" id="t4">TELA 4 — Painel do Admin (admin.html)</div>
+    <section class="card-glass p-4 mb-4">
+      <h5 class="text-amarelo fw-bold">⚙️ Pontuação</h5>
+      <div class="row g-2 align-items-end">
+        <div class="col"><label class="form-label small">Placar exato</label><input type="number" class="form-control" value="10"></div>
+        <div class="col"><label class="form-label small">Vencedor + saldo</label><input type="number" class="form-control" value="7"></div>
+        <div class="col"><label class="form-label small">Só o vencedor</label><input type="number" class="form-control" value="5"></div>
+        <div class="col-auto"><button class="btn btn-copa">Salvar</button></div>
+      </div>
+    </section>
+    <section class="card-glass p-4 mb-4">
+      <h5 class="text-amarelo fw-bold">➕ Cadastrar jogo</h5>
+      <div class="row g-2">
+        <div class="col-md-3"><input class="form-control" placeholder="Time mandante"></div>
+        <div class="col-md-3"><input class="form-control" placeholder="Time visitante"></div>
+        <div class="col-md-3"><input type="datetime-local" class="form-control"></div>
+        <div class="col-md-2"><select class="form-select"><option>Fase de Grupos</option><option>Final</option></select></div>
+        <div class="col-md-1"><input class="form-control" placeholder="Grupo"></div>
+      </div>
+      <button class="btn btn-copa mt-3">Adicionar jogo</button>
+    </section>
+    <section class="card-glass p-4">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 class="text-amarelo fw-bold mb-0">📋 Jogos e resultados</h5><span class="muted small">12 jogo(s)</span>
+      </div>
+      <div class="match-card">
+        <div class="d-flex justify-content-between mb-1">
+          <small class="muted">Fase de Grupos • Grupo B • 14/06 16:00</small>
+          <button class="btn btn-sm btn-link text-danger p-0">excluir</button>
+        </div>
+        <div class="d-flex align-items-center justify-content-center gap-2 flex-wrap">
+          <div class="team justify-content-end" style="flex:1"><span class="text-truncate">Argentina</span><span class="flag">🇦🇷</span></div>
+          <input type="number" class="score-input" placeholder="-">
+          <span class="vs">x</span>
+          <input type="number" class="score-input" placeholder="-">
+          <div class="team" style="flex:1"><span class="flag">🇭🇷</span><span class="text-truncate">Croácia</span></div>
+        </div>
+        <div class="text-center mt-2"><button class="btn btn-sm btn-copa">Lançar resultado</button></div>
+      </div>
+      <div class="match-card finished">
+        <div class="d-flex justify-content-between mb-1">
+          <small class="muted">Fase de Grupos • Grupo A • 13/06 16:00</small>
+          <button class="btn btn-sm btn-link text-danger p-0">excluir</button>
+        </div>
+        <div class="d-flex align-items-center justify-content-center gap-2 flex-wrap">
+          <div class="team justify-content-end" style="flex:1"><span class="text-truncate">Brasil</span><span class="flag">🇧🇷</span></div>
+          <input type="number" class="score-input" value="2">
+          <span class="vs">x</span>
+          <input type="number" class="score-input" value="1">
+          <div class="team" style="flex:1"><span class="flag">🇷🇸</span><span class="text-truncate">Sérvia</span></div>
+        </div>
+        <div class="text-center mt-2">
+          <button class="btn btn-sm btn-copa">Atualizar resultado</button>
+          <button class="btn btn-sm btn-outline-light ms-2">Reabrir</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="py-5"></div>
+  </main>
+</body>
+</html>
