@@ -29,4 +29,4 @@ export const firebaseConfig = {
 
 // PIN do administrador (quem lança os resultados oficiais e cadastra
 // os jogos). Troque por um número/senha que só você saiba.
-export const ADMIN_PIN = "1234";
+export const ADMIN_PIN = "939706";
