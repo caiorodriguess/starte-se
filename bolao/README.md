@@ -75,9 +75,40 @@ Mande esse link para a galera. 🎉
 
 ### Para você (admin)
 1. Em **Admin**, digite o PIN.
-2. Cadastre os jogos (um a um, ou cole vários de uma vez na importação em lote).
-3. Conforme os jogos vão acabando, lance o placar final em cada um.
+2. Os jogos da Copa entram **sozinhos** (ver "Resultados automáticos" abaixo).
+   Se precisar, ainda dá para cadastrar/editar jogos manualmente aqui.
+3. Os placares também chegam sozinhos — mas você pode corrigir/lançar um
+   resultado manualmente a qualquer momento.
 4. O ranking recalcula tudo automaticamente.
+
+---
+
+## Resultados automáticos (GitHub Actions + API)
+
+Os jogos e placares da Copa são buscados de forma automática numa API de
+futebol e gravados no Firebase a cada ~15 min — ninguém precisa lançar nada
+à mão. Quem cuida disso é o robô em `.github/workflows/atualizar-resultados.yml`
+(script: `scripts/atualizar-resultados.mjs`).
+
+**Configuração (uma vez só):**
+
+1. **Pegue uma chave grátis** em <https://www.football-data.org/client/register>.
+   Confirme o e-mail e copie o seu *API Token*.
+2. No GitHub, vá em **Settings → Secrets and variables → Actions → New
+   repository secret** e crie:
+   - `FOOTBALL_DATA_TOKEN` → o token que você copiou.
+   - `FIREBASE_DB_URL` → `https://bolao-copa-2026-e393b-default-rtdb.firebaseio.com`
+     (opcional; o script já usa essa URL por padrão).
+3. Em **Actions**, habilite os workflows se for pedido, abra **"Atualizar
+   resultados do bolão"** e clique em **Run workflow** para a primeira carga.
+
+A partir daí ele roda sozinho de 15 em 15 minutos. Os palpites continuam
+travando no horário de início de cada jogo.
+
+> ⚠️ O plano gratuito da football-data.org pode ter limite de competições.
+> Se a Copa do Mundo 2026 (`WC`) não estiver inclusa no seu plano, o robô vai
+> avisar no log do Actions — nesse caso dá para trocar a API ou lançar os
+> resultados manualmente pelo Admin (o sistema aceita os dois).
 
 ### Pontuação (configurável no admin)
 | Situação | Pontos |

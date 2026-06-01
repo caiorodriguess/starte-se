@@ -1,141 +1,199 @@
+/* ============================================================
+   Bolão da Copa — Identidade visual Água Camelo
+   Base: brandbook 2024 (colors_and_type.css). Superfície preta,
+   tipografia Bricolage Grotesque, cores em blocos sólidos,
+   cantos retos, pílulas nas ações, sem gradiente nem blur.
+   ============================================================ */
+
+/* ---- Tipografia da marca (auto-hospedada) ---- */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../fonts/BricolageGrotesque.ttf") format("truetype");
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+}
+
 :root {
-  --verde:   #0a8a3d;
-  --verde-d: #066a2e;
-  --amarelo: #ffd200;
-  --azul:    #1c2e6e;
-  --escuro:  #11151c;
+  --ac-blue-deep: #023da5;
+  --ac-blue-logo: #184098;
+  --ac-blue:      #0372ff;
+  --ac-pink:      #ff6fff;
+  --ac-cyan:      #0efbe3;
+  --ac-lime:      #abff5a;
+  --ac-green:     #00906c;
+  --ac-white:     #fefefe;
+  --ac-black:     #000000;
+
+  --bg:        var(--ac-black);
+  --surface:   #0c0d10;          /* painel sobre o preto */
+  --fg:        var(--ac-white);
+  --fg-muted:  color-mix(in oklab, var(--ac-white), transparent 42%);
+  --accent:    var(--ac-cyan);   /* destaque principal */
+  --accent-2:  var(--ac-pink);   /* ação primária */
+  --accent-3:  var(--ac-lime);   /* "ao vivo" / acerto */
+  --line:      color-mix(in oklab, var(--ac-white), transparent 84%);
+
+  --font: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
+
+  --r-pill: 999px;
+  --r-block: 0px;       /* layout: cantos retos */
+  --bw: 2px;
+  --shadow-sticker: 4px 4px 0 0 var(--ac-black);
 }
 
 * { box-sizing: border-box; }
 
 body {
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-  background: linear-gradient(160deg, #0b3d20 0%, #11151c 55%, #1c2e6e 100%);
-  background-attachment: fixed;
-  color: #f5f7fa;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--fg);
   min-height: 100vh;
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
-a { color: var(--amarelo); }
+a { color: var(--accent); text-underline-offset: 3px; }
 
+/* ---- Navegação ---- */
 .bolao-nav {
-  background: rgba(0, 0, 0, .35);
-  backdrop-filter: blur(8px);
-  border-bottom: 3px solid var(--amarelo);
+  background: var(--ac-black);
+  border-bottom: var(--bw) solid var(--accent);
 }
 .bolao-nav .brand {
   font-weight: 800;
-  letter-spacing: .5px;
-  color: #fff;
+  letter-spacing: -0.02em;
+  color: var(--fg);
   text-decoration: none;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
 }
-.bolao-nav .brand span { color: var(--amarelo); }
-.bolao-nav a.nav-link { color: #e9edf2; font-weight: 600; }
+.bolao-nav .brand span { color: var(--accent); }
+.bolao-nav a.nav-link { color: var(--fg); font-weight: 600; padding: .25rem .25rem; }
 .bolao-nav a.nav-link.active,
-.bolao-nav a.nav-link:hover { color: var(--amarelo); }
+.bolao-nav a.nav-link:hover { color: var(--accent); }
 
+/* ---- Painéis (cantos retos, borda sólida, sem blur) ---- */
 .card-glass {
-  background: rgba(255, 255, 255, .06);
-  border: 1px solid rgba(255, 255, 255, .12);
-  border-radius: 18px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, .35);
-  backdrop-filter: blur(6px);
+  background: var(--surface);
+  border: var(--bw) solid var(--line);
+  border-radius: var(--r-block);
 }
 
-.btn-copa {
-  background: var(--amarelo);
-  color: #1a1a1a;
-  font-weight: 700;
-  border: none;
-}
-.btn-copa:hover { background: #ffdd33; color: #000; }
-
+/* ---- Botões = pílulas ---- */
+.btn-copa,
 .btn-outline-copa {
-  border: 2px solid var(--amarelo);
-  color: var(--amarelo);
+  border-radius: var(--r-pill);
   font-weight: 700;
-  background: transparent;
+  letter-spacing: -0.01em;
+  border: var(--bw) solid var(--ac-black);
+  transition: background 120ms ease, color 120ms ease, transform 120ms ease;
 }
-.btn-outline-copa:hover { background: var(--amarelo); color: #1a1a1a; }
+.btn-copa { background: var(--accent-2); color: var(--ac-black); }
+.btn-copa:hover { background: var(--accent); color: var(--ac-black); }
+.btn-copa:active { transform: translateY(1px); }
 
+.btn-outline-copa { background: transparent; color: var(--fg); border-color: var(--fg); }
+.btn-outline-copa:hover { background: var(--accent); color: var(--ac-black); border-color: var(--ac-black); }
+
+/* ---- Hero ---- */
 .hero-title {
-  font-weight: 900;
-  font-size: clamp(2rem, 6vw, 3.6rem);
-  line-height: 1.05;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 6.5vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
 }
-.hero-title span { color: var(--amarelo); }
+.hero-title span { color: var(--accent); }
 
-/* ----- Cartão de jogo / palpite ----- */
+/* ---- Cartão de jogo / palpite ---- */
 .match-card {
-  background: rgba(255, 255, 255, .05);
-  border: 1px solid rgba(255, 255, 255, .1);
-  border-radius: 14px;
+  background: var(--surface);
+  border: var(--bw) solid var(--line);
+  border-radius: var(--r-block);
   padding: .85rem 1rem;
-  margin-bottom: .75rem;
-  transition: border-color .15s;
+  margin-bottom: .6rem;
+  transition: border-color .12s;
 }
-.match-card:hover { border-color: rgba(255, 210, 0, .5); }
-.match-card.finished { border-left: 4px solid var(--amarelo); }
-.match-card.locked   { opacity: .85; }
+.match-card:hover { border-color: var(--accent); }
+.match-card.finished { border-left: 6px solid var(--accent-3); }
+.match-card.locked   { opacity: .9; }
 
-.team {
-  display: flex; align-items: center; gap: .5rem;
-  font-weight: 700; min-width: 0;
-}
+.team { display: flex; align-items: center; gap: .5rem; font-weight: 700; min-width: 0; }
 .team .flag { font-size: 1.4rem; }
-.score-input {
-  width: 56px; text-align: center; font-weight: 800; font-size: 1.1rem;
-  background: rgba(0,0,0,.3); color: #fff;
-  border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: .3rem;
-}
-.score-input:disabled { opacity: .6; }
-.vs { color: var(--amarelo); font-weight: 800; }
 
+.score-input {
+  width: 58px; text-align: center; font-weight: 800; font-size: 1.1rem;
+  background: var(--ac-black); color: var(--fg);
+  border: var(--bw) solid var(--line); border-radius: var(--r-block); padding: .3rem;
+}
+.score-input:focus { outline: none; border-color: var(--accent); }
+.score-input:disabled { opacity: .55; }
+.vs { color: var(--accent); font-weight: 800; }
+
+/* ---- Pílulas de estado ---- */
 .badge-stage {
-  background: rgba(255, 210, 0, .15);
-  color: var(--amarelo);
-  border: 1px solid rgba(255, 210, 0, .35);
-  font-weight: 700;
+  background: transparent; color: var(--accent);
+  border: var(--bw) solid var(--accent); font-weight: 700; border-radius: var(--r-pill);
 }
 .result-pill {
-  background: var(--verde);
-  color: #fff; font-weight: 800;
-  border-radius: 999px; padding: .15rem .7rem;
+  background: var(--accent-3); color: var(--ac-black); font-weight: 800;
+  border-radius: var(--r-pill); padding: .15rem .8rem;
 }
-.pts-pill {
-  border-radius: 999px; padding: .1rem .55rem; font-weight: 800; font-size: .8rem;
-}
-.pts-10 { background: var(--amarelo); color:#1a1a1a; }
-.pts-mid { background: #2ea44f; color:#fff; }
-.pts-0  { background: rgba(255,255,255,.12); color:#cfd6df; }
+.pts-pill { border-radius: var(--r-pill); padding: .12rem .6rem; font-weight: 800; font-size: .8rem; }
+.pts-10  { background: var(--accent); color: var(--ac-black); }
+.pts-mid { background: var(--accent-3); color: var(--ac-black); }
+.pts-0   { background: color-mix(in oklab, var(--ac-white), transparent 88%); color: var(--fg-muted); }
 
-/* ----- Ranking ----- */
-.rank-table { width: 100%; border-collapse: separate; border-spacing: 0 .5rem; }
-.rank-table th { color: var(--amarelo); font-size: .8rem; text-transform: uppercase; letter-spacing:.5px; }
+/* ---- Ranking ---- */
+.rank-table { width: 100%; border-collapse: separate; border-spacing: 0 .4rem; }
+.rank-table th {
+  color: var(--accent); font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 700;
+}
 .rank-table td, .rank-table th { padding: .7rem .8rem; }
-.rank-row { background: rgba(255,255,255,.05); }
-.rank-row td:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
-.rank-row td:last-child  { border-top-right-radius: 12px; border-bottom-right-radius: 12px; }
-.rank-pos { font-weight: 900; font-size: 1.1rem; width: 48px; text-align:center; }
-.rank-1 { background: linear-gradient(90deg, rgba(255,210,0,.25), rgba(255,255,255,.05)); }
-.rank-1 .rank-pos { color: var(--amarelo); }
+.rank-row { background: var(--surface); }
+.rank-row td { border-top: var(--bw) solid var(--line); border-bottom: var(--bw) solid var(--line); }
+.rank-row td:first-child { border-left: var(--bw) solid var(--line); }
+.rank-row td:last-child  { border-right: var(--bw) solid var(--line); }
+.rank-pos { font-weight: 800; font-size: 1.1rem; width: 48px; text-align: center; }
+/* líder = bloco de cor sólido (azul vibrante), sem gradiente */
+.rank-1 td { background: var(--ac-blue); border-color: var(--ac-black); color: var(--ac-white); }
+.rank-1 .rank-pos { color: var(--ac-white); }
+.rank-1 .text-amarelo { color: var(--ac-white) !important; }
 .medal { font-size: 1.3rem; }
 
+/* ---- Campeão = bloco sólido estilo adesivo ---- */
 .winner-banner {
-  background: linear-gradient(90deg, var(--amarelo), #ffe766);
-  color: #1a1a1a; border-radius: 18px; padding: 1.5rem;
-  text-align: center; font-weight: 900;
+  background: var(--accent);
+  color: var(--ac-black);
+  border: var(--bw) solid var(--ac-black);
+  border-radius: var(--r-block);
+  box-shadow: var(--shadow-sticker);
+  padding: 1.5rem; text-align: center; font-weight: 800;
 }
-.winner-banner .who { font-size: 1.8rem; }
+.winner-banner .who { font-size: 2rem; letter-spacing: -0.02em; }
 
+/* ---- Aviso de configuração ---- */
 .setup-banner {
-  background: rgba(255, 80, 80, .15);
-  border: 1px solid rgba(255, 120, 120, .5);
-  border-radius: 14px; padding: 1rem 1.25rem;
+  background: var(--ac-black);
+  border: var(--bw) solid var(--accent-2);
+  border-radius: var(--r-block); padding: 1rem 1.25rem; color: var(--fg);
 }
 
-.muted { color: #aeb8c4; }
-.text-amarelo { color: var(--amarelo); }
-.divider { height: 1px; background: rgba(255,255,255,.12); margin: 1.25rem 0; }
+/* ---- Utilitários (nomes herdados) ---- */
+.muted { color: var(--fg-muted); }
+.text-amarelo { color: var(--accent); }   /* nome legado → ciano da marca */
+.divider { height: var(--bw); background: var(--line); margin: 1.25rem 0; }
+
+/* ---- Ajustes do Bootstrap para o tema escuro ---- */
+.form-control, .form-select {
+  background: var(--ac-black); color: var(--fg);
+  border: var(--bw) solid var(--line); border-radius: var(--r-block);
+}
+.form-control:focus, .form-select:focus {
+  background: var(--ac-black); color: var(--fg);
+  border-color: var(--accent); box-shadow: none;
+}
+.form-control::placeholder { color: var(--fg-muted); }
+.input-group .btn-copa { border-radius: var(--r-pill); }
+.badge.bg-warning { background: var(--accent) !important; color: var(--ac-black) !important; }
+.btn-outline-light { border-radius: var(--r-pill); }
+::selection { background: var(--accent); color: var(--ac-black); }
