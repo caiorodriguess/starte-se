@@ -18,13 +18,13 @@
 // =============================================================
 
 export const firebaseConfig = {
-  apiKey:            "SEU_API_KEY",
-  authDomain:        "SEU_PROJETO.firebaseapp.com",
-  databaseURL:       "https://SEU_PROJETO-default-rtdb.firebaseio.com",
-  projectId:         "SEU_PROJETO",
-  storageBucket:     "SEU_PROJETO.appspot.com",
-  messagingSenderId: "SEU_SENDER_ID",
-  appId:             "SEU_APP_ID"
+  apiKey:            "AIzaSyCJY8CFUANk_fHM5ZdDzB4e-QOgDWwSaw4",
+  authDomain:        "bolao-copa-2026-e393b.firebaseapp.com",
+  databaseURL:       "https://bolao-copa-2026-e393b-default-rtdb.firebaseio.com",
+  projectId:         "bolao-copa-2026-e393b",
+  storageBucket:     "bolao-copa-2026-e393b.firebasestorage.app",
+  messagingSenderId: "946551566245",
+  appId:             "1:946551566245:web:ca997016aa563f2180824c"
 };
 
 // PIN do administrador (quem lança os resultados oficiais e cadastra
