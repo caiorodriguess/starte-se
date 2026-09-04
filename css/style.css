@@ -206,7 +206,9 @@ header.masthead {
     min-height: auto;
     text-align: center;
     color: white;
-    background-image: url("../img/background3.jpg");
+    /* mobile-first: o celular baixa e decodifica apenas a versao pequena (960x640).
+       A versao 1920x1280 entra so a partir de 768px (ver media query abaixo). */
+    background-image: url("../img/background3-mobile.jpg");
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -254,6 +256,7 @@ header.masthead .header-content .header-content-inner p {
     header.masthead {
         height: 100%;
         min-height: 600px;
+        background-image: url("../img/background3.jpg");
     }
     header.masthead .header-content {
         position: absolute;
